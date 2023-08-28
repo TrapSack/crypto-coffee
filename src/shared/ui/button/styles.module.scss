@@ -13,4 +13,13 @@
       background-color: $btn_primary_hover;
     }
   }
+
+  &.orange {
+    background-color: $btn_orange;
+    color: $primary;
+
+    &:hover {
+      opacity: 0.7;
+    }
+  }
 }

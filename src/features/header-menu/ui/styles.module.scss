@@ -1,0 +1,31 @@
+.header-menu {
+  display: flex;
+  align-items: center;
+  margin: 0 auto;
+
+  gap: 7px;
+
+  & > .menu-item {
+    padding: 8px 15px;
+    border-radius: 4px;
+    transition: all 0.1s ease;
+    color: #1a1a1a;
+    text-decoration: none;
+    cursor: pointer;
+
+    &:hover {
+      background-color: $gray_1;
+      color: #000;
+    }
+
+    &.special {
+      background-color: $btn_orange;
+      color: $primary;
+      opacity: 0.9;
+
+      &:hover {
+        opacity: 1;
+      }
+    }
+  }
+}
