@@ -1,0 +1,17 @@
+.loading {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #ffffff7c;
+  top: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: $z-index-xxl;
+  transition: 0.3s ease;
+
+  img {
+    position: relative;
+    transform: scale(0.5);
+  }
+}

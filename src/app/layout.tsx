@@ -1,5 +1,7 @@
 import '@shared/styles';
+import { Suspense } from 'react';
 import { Header } from '@src/widgets/header';
+import Loading from './loading';
 
 export default function RootLayout({
   children,
@@ -10,7 +12,7 @@ export default function RootLayout({
     <html lang="en">
       <body>
         <Header />
-        {children}
+        <Suspense fallback={<Loading />}>{children}</Suspense>
       </body>
     </html>
   );

@@ -1,3 +1,3 @@
 export default function Page() {
-    return <div>Pricing page</div>
+    return <div className="center">Pricing page</div>
 }
