@@ -8,10 +8,6 @@
     "start": "next start",
     "lint": "next lint"
   },
-  "lint-staged": {
-    "{*.js, *.tsx}": "eslint --fix",
-    "*": "prettier --write"
-  },
   "dependencies": {
     "@fontsource/noto-sans-tc": "^5.0.7",
     "@types/axios": "^0.14.0",
