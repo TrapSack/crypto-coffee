@@ -1,8 +1,8 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 'use client';
+
 import { useContext,  useEffect } from 'react';
-import { CupControls } from '@src/features/cup-controls';
-import { Cup, CupContext } from '@entities/cup';
+import { CupContext } from '@entities/cup';
 
 import styles from './styles.module.scss';
 
@@ -21,8 +21,8 @@ export const CreateCoffeeCup = () => {
 
   return (
     <div className={styles.cupWrapper}>
-      <Cup />
-      <CupControls />
+      {/* <Cup />
+      <CupControls /> */}
     </div>
   );
 };

@@ -12,7 +12,7 @@ export const menuData: MenuDataItem[] = [
     title: 'Home',
   },
   {
-    link: routes.home,
+    link: routes.createCup,
     title: 'Create a cup',
     type: 'orange',
   },

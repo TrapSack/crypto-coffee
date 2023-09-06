@@ -1,6 +1,6 @@
 'use client';
 
-import { createContext } from 'react';
+import { PropsWithChildren, createContext } from 'react';
 import { useCup } from '..';
 
 type UseCupReturnType = ReturnType<typeof useCup>;
@@ -9,7 +9,7 @@ export const CupContext = createContext<UseCupReturnType>({
   coffeeStack: [],
   error: null,
   isInit: false,
-  topingTypes:[],
+  topingTypes: [],
   capacity: 0,
   add: () => null,
   clear: () => null,
@@ -19,7 +19,7 @@ export const CupContext = createContext<UseCupReturnType>({
   getCurrentAmount: () => NaN,
 });
 
-export const CupContextProvider = ({ children }: { children: JSX.Element }) => {
+export const CupContextProvider = ({ children }: PropsWithChildren) => {
   const {
     add,
     changeOrder,
@@ -31,7 +31,7 @@ export const CupContextProvider = ({ children }: { children: JSX.Element }) => {
     initialize,
     capacity,
     clear,
-    topingTypes
+    topingTypes,
   } = useCup();
 
   return (

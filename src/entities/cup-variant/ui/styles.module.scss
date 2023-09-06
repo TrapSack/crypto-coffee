@@ -1,0 +1,53 @@
+.variant {
+  display: grid;
+  grid-template-columns: 3fr 7fr;
+}
+
+.picture {
+  display: flex;
+  align-items: center;
+}
+
+.red {
+  width: 29px;
+  height: 33px;
+  border-radius: 8px;
+  background-color: #ff5454;
+}
+
+.button {
+  height: 24px;
+  width: 24px;
+  background-color: $btn_orange;
+  border-radius: 4px;
+  font-size: 20px;
+  color: #fff;
+  opacity: 0.9;
+  border: none;
+
+  cursor: pointer;
+
+  &:hover {
+    opacity: 1;
+  }
+}
+.info-container {
+  display: flex;
+  align-items: center;
+}
+
+.name {
+  font-size: 18px;
+}
+
+.expand {
+  font-size: 14px;
+  line-height: 16px;
+  text-decoration-line: underline;
+  cursor: pointer;
+  color: #8c8c8c;
+
+  &:hover {
+    color: #959595;
+  }
+}

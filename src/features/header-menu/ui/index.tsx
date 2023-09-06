@@ -5,7 +5,7 @@ import styles from './styles.module.scss';
 
 export const HeaderMenu = () => {
   return (
-    <div className={styles.headerMenu}>
+    <menu className={styles.headerMenu}>
       {menuData.map((dataItem) => (
         <Link
           key={dataItem.title}
@@ -17,6 +17,6 @@ export const HeaderMenu = () => {
           <div>{dataItem.title}</div>
         </Link>
       ))}
-    </div>
+    </menu>
   );
 };

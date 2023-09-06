@@ -1,3 +1,16 @@
 body {
-    background-color: $body
+  background-color: $body;
+}
+* {
+  &::-webkit-scrollbar {
+    width: 6px;
+  }
+
+  &::-webkit-scrollbar-track {
+    background-color: transparent;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background-color: #484848a3;
+  }
 }

@@ -117,6 +117,8 @@ export const useCup = () => {
     setCapacity(initCapacity);
     setCoffeeStack(initCoffeeStack);
 
+    console.log('initializing')
+
     if (!topingTypes.length) {
       fetchTopingTypes() // This changes to api request
         .then((tt) => {

@@ -1,0 +1,13 @@
+.variants {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  max-height: 365px;
+  overflow-y: auto;
+}
+
+.title {
+  font-size: 22px;
+  font-weight: bold;
+  margin-bottom: 18px;
+}
