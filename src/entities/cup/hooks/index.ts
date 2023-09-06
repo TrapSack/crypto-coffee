@@ -10,7 +10,7 @@ export type CoffeStackItemType = 'milk' | 'espresso' | 'cream';
 export type CoffeeStackItem = {
   type: CoffeStackItemType;
   amount: number;
-  color: string;
+  color?: string;
 };
 
 export enum CUP_ERROR {

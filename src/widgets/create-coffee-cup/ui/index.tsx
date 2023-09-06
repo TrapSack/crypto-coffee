@@ -7,17 +7,12 @@ import { CupContext } from '@entities/cup';
 import styles from './styles.module.scss';
 
 export const CreateCoffeeCup = () => {
-  const { isInit, initialize } = useContext(CupContext);
+  const { initialize } = useContext(CupContext);
 
-  console.log(isInit)
 
   useEffect(()=> {
     initialize(5)
   },[])
-
-  if (!isInit) {
-    return <div>Loading..</div>;
-  }
 
   return (
     <div className={styles.cupWrapper}>

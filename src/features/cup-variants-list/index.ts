@@ -1,1 +1,1 @@
-export { CupVariantsList } from './ui';
+export { default as CupVariantsList } from './ui';

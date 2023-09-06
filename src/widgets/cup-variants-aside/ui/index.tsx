@@ -3,7 +3,7 @@
 import classNames from 'classnames';
 import { useState } from 'react';
 import { CupVariantsList } from '@features/cup-variants-list';
-import { ArrowLeft } from '@shared/assets';
+import { Arrow } from '@shared/assets';
 import { Aside } from '@shared/ui/aside';
 
 import styles from './styles.module.scss';
@@ -24,21 +24,30 @@ export const CupVariantsAside = () => {
     }, ANIMATION_DURATION);
   };
 
-  if (!isOpen) return null;
+  const handleOpenMainVariant = () => {
+    setMainClass('open');
+    setIsOpen(true);
+  };
+
+  if (!isOpen)
+    return (
+      <Aside styleName={styles.transparent} onClick={handleOpenMainVariant}>
+        <Arrow className={styles.arrowRight} />
+      </Aside>
+    );
 
   return (
     <Aside styleName={classNames(styles.main, styles[mainClass])}>
       <div className={styles.title}>
         <div className={styles.top}>
-          <div>Make a coffee</div>{' '}
-          <ArrowLeft onClick={handleCloseMainVariant} />
+          <div>Make a coffee</div> <Arrow onClick={handleCloseMainVariant} />
         </div>
         <div className={styles.bottom}>
           <div>You can add topings from list</div>
           <div>Or you can choose from our and classic variants</div>
         </div>
       </div>
-      <CupVariantsList />
+      <CupVariantsList  />
     </Aside>
   );
 };

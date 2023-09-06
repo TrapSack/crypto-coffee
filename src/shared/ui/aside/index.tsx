@@ -1,5 +1,5 @@
 import classNames from 'classnames';
-import { PropsWithChildren } from 'react';
+import { DetailedHTMLProps, HTMLAttributes, PropsWithChildren } from 'react';
 import styles from './styles.module.scss';
 
 type AsideProps = {
@@ -9,8 +9,13 @@ type AsideProps = {
 export const Aside = ({
   styleName,
   children,
-}: PropsWithChildren<AsideProps>) => {
+  ...restProps
+}: PropsWithChildren<
+  AsideProps & DetailedHTMLProps<HTMLAttributes<HTMLElement>, HTMLElement>
+>) => {
   return (
-    <aside className={classNames(styles.aside, styleName)}>{children}</aside>
+    <aside className={classNames(styles.aside, styleName)} {...restProps}>
+      {children}
+    </aside>
   );
 };
