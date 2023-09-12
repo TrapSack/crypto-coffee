@@ -16,16 +16,18 @@ export type CoffeeStackItem = {
 export enum CUP_ERROR {
   FULL = 'Cup is full',
   TYPE_DOESNT_EXIST = 'Toping type doesn`t exist',
+  WRONG_FORMAT = 'Amount should be number type',
 }
 
 export const useCup = () => {
   const [capacity, setCapacity] = useState(0);
   const [coffeeStack, setCoffeeStack] = useState<CoffeeStackItem[]>([]);
   const [topingTypes, setTopingTypes] = useState<TopingType[]>([]);
-  const [isInit, setIsInit] = useState(false);
+  const [isInitialized, setIsInitialized] = useState(false);
   const [error, setError] = useState<CUP_ERROR | null>(null);
 
-  const isCupFull = (amount: number) => getCurrentAmount() + amount > capacity;
+  const isCupFull = (amount?: number) =>
+    getCurrentAmount() + (amount ?? 0) > capacity;
 
   const calculateAmountToFillCup = () => capacity - getCurrentAmount();
 
@@ -77,16 +79,48 @@ export const useCup = () => {
   const remove = (type: CoffeStackItemType, amount?: number) => {
     const typeToRemoveIndex = coffeeStack.findIndex((c) => c.type === type);
 
+    if (!~typeToRemoveIndex) {
+      setError(CUP_ERROR.TYPE_DOESNT_EXIST);
+      return;
+    }
+
     const coffeeStackClone = structuredClone(coffeeStack);
 
-    if (~typeToRemoveIndex) {
-      if (!amount) {
-        coffeeStackClone.splice(typeToRemoveIndex, 1);
-      } else {
-        coffeeStackClone[typeToRemoveIndex].amount -= amount;
-      }
+    if (!amount || coffeeStackClone[typeToRemoveIndex].amount - amount <= 0) {
+      coffeeStackClone.splice(typeToRemoveIndex, 1);
     } else {
-      setError(CUP_ERROR.TYPE_DOESNT_EXIST);
+      coffeeStackClone[typeToRemoveIndex].amount -= amount;
+    }
+
+    setCoffeeStack(coffeeStackClone);
+  };
+
+  const setAmount = (type: CoffeStackItemType, amount: number) => {
+    if (isNaN(amount)) {
+      setError(CUP_ERROR.WRONG_FORMAT);
+      return;
+    }
+
+    const typeToSetIndex = coffeeStack.findIndex((c) => c.type === type);
+
+    const coffeeStackClone = structuredClone(coffeeStack);
+
+    const amountToFill = calculateAmountToFillCup();
+
+    if (!~typeToSetIndex) {
+      coffeeStackClone.push({
+        type,
+        amount: amount > amountToFill ? amountToFill : amount,
+      });
+    } else {
+      if (
+        amount + getCurrentAmount() > capacity &&
+        amount > coffeeStackClone[typeToSetIndex].amount
+      ) {
+        coffeeStackClone[typeToSetIndex].amount += amountToFill;
+      } else {
+        coffeeStackClone[typeToSetIndex].amount = amount;
+      }
     }
 
     setCoffeeStack(coffeeStackClone);
@@ -117,7 +151,7 @@ export const useCup = () => {
     setCapacity(initCapacity);
     setCoffeeStack(initCoffeeStack);
 
-    console.log('initializing')
+    console.log('initializing');
 
     if (!topingTypes.length) {
       fetchTopingTypes() // This changes to api request
@@ -127,17 +161,19 @@ export const useCup = () => {
         .catch((e) => {
           console.log(e);
         })
-        .finally(() => setIsInit(true));
+        .finally(() => setIsInitialized(true));
     }
   };
+
 
   return {
     add,
     remove,
+    setAmount,
     changeOrder,
     getCurrentAmount,
     coffeeStack,
-    isInit,
+    isInitialized,
     error,
     capacity,
     initialize,

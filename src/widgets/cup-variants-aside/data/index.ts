@@ -1,12 +1,12 @@
 import { CoffeeStackItem } from '@src/entities/cup';
 
-type CupVariant = {
+export type CupVariantType = {
   name: string;
   id: string;
   topings: CoffeeStackItem[];
 };
 
-const cupVariants: CupVariant[] = [
+const cupVariants: CupVariantType[] = [
   {
     name: 'Cappucino',
     id: 'cup-1',
@@ -36,12 +36,9 @@ const cupVariants: CupVariant[] = [
   },
 ];
 
-export const getCupVariants = async () => {
-  const variantsPromise = new Promise((res) => {
+export const getCupVariants = async () =>
+  new Promise((res) => {
     setTimeout(() => {
       res(cupVariants);
     }, 500);
   });
-
-  return variantsPromise.then((res) => res);
-};

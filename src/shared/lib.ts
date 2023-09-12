@@ -12,7 +12,7 @@ export function functionEmmitter<T>(
   };
 }
 
-export function swapArrayItems<T extends any[]>(
+export function swapArrayItems<U, T extends U[]>(
   array: T,
   from: keyof T,
   to: keyof T

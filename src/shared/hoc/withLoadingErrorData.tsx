@@ -1,5 +1,10 @@
 import React, { useState, useLayoutEffect } from 'react';
 
+export type PropsWithLoadingError<G> = {
+  loading?: boolean;
+  error?: string;
+} & G;
+
 export const WithLoadingErrorData = <
   U extends object | undefined,
   K,

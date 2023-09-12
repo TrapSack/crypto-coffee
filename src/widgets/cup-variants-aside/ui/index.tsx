@@ -2,10 +2,12 @@
 
 import classNames from 'classnames';
 import { useState } from 'react';
-import { CupVariantsList } from '@features/cup-variants-list';
+import { CupVariant } from '@src/features/cup-variant';
 import { Arrow } from '@shared/assets';
+import { WithLoadingErrorData } from '@shared/hoc';
 import { Aside } from '@shared/ui/aside';
-
+import { List } from '@src/shared/ui';
+import { CupVariantType, getCupVariants } from '../data';
 import styles from './styles.module.scss';
 
 type MainClass = 'open' | 'close';
@@ -47,7 +49,36 @@ export const CupVariantsAside = () => {
           <div>Or you can choose from our and classic variants</div>
         </div>
       </div>
-      <CupVariantsList  />
+      <CupVariantsApiList />
     </Aside>
   );
 };
+
+const CupVariantsList = ({
+  data = [],
+  loading,
+  error,
+}: {
+  data?: CupVariantType[];
+  loading?: boolean;
+  error?: string;
+}) => {
+  if (loading) return <div>LOADING...</div>;
+
+  if (error) return <div>{error}r</div>;
+
+  if (!loading && !data.length) return <div>No cup variants available</div>;
+
+  return (
+    <List title="Variants">
+      {data.map((variant) => (
+        <CupVariant key={variant.id} />
+      ))}
+    </List>
+  );
+};
+
+const CupVariantsApiList = WithLoadingErrorData(
+  CupVariantsList,
+  getCupVariants
+);

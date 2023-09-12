@@ -1,0 +1,1 @@
+export { TopingVariant } from './ui';

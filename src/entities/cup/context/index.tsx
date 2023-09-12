@@ -8,7 +8,7 @@ type UseCupReturnType = ReturnType<typeof useCup>;
 export const CupContext = createContext<UseCupReturnType>({
   coffeeStack: [],
   error: null,
-  isInit: false,
+  isInitialized: false,
   topingTypes: [],
   capacity: 0,
   add: () => null,
@@ -17,6 +17,7 @@ export const CupContext = createContext<UseCupReturnType>({
   initialize: () => null,
   changeOrder: () => null,
   getCurrentAmount: () => NaN,
+  setAmount: () => null,
 });
 
 export const CupContextProvider = ({ children }: PropsWithChildren) => {
@@ -26,25 +27,27 @@ export const CupContextProvider = ({ children }: PropsWithChildren) => {
     coffeeStack,
     error,
     getCurrentAmount,
-    isInit,
+    isInitialized,
     remove,
     initialize,
     capacity,
     clear,
     topingTypes,
+    setAmount
   } = useCup();
 
   return (
     <CupContext.Provider
       value={{
         add,
+        remove,
+        setAmount,
         topingTypes,
         changeOrder,
         coffeeStack,
         error,
         getCurrentAmount,
-        isInit,
-        remove,
+        isInitialized,
         initialize,
         capacity,
         clear,

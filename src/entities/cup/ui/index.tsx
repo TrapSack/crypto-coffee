@@ -22,7 +22,7 @@ export function Cup() {
 
   const stackHeight = (getCurrentAmount() / capacity) * 100;
 
-  console.log(coffeeStackWithPrecent);
+  // console.log(coffeeStackWithPrecent);
 
   return (
     <div className={styles.cup}>
