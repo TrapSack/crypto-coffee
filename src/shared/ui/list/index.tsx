@@ -1,15 +1,31 @@
-import { PropsWithChildren } from 'react';
+import classNames from 'classnames';
+import { PropsWithChildren, ReactNode } from 'react';
 
 import styles from './styles.module.scss';
 
 export const List = ({
   children,
   title,
-}: PropsWithChildren<{ title?: string }>) => {
+  className,
+  gap = 15,
+}: PropsWithChildren<{
+  title?: ReactNode;
+  className?: string;
+  gap?: string | number;
+}>) => {
+  const titleToShow =
+    typeof title === 'string' ? (
+      <div className={styles.title}>{title}</div>
+    ) : (
+      title
+    );
+
   return (
-    <div className={styles.listWrapper}>
-      {title && <div className={styles.title}>{title}</div>}
-      <div className={styles.list}>{children}</div>
+    <div className={classNames(styles.listWrapper, className)}>
+      {titleToShow}
+      <div className={styles.list} style={{ gap }}>
+        {children}
+      </div>
     </div>
   );
 };

@@ -148,6 +148,8 @@ export const useCup = () => {
     initCapacity: number = 0,
     initCoffeeStack: CoffeeStackItem[] = []
   ) => {
+    if (isInitialized) return;
+
     setCapacity(initCapacity);
     setCoffeeStack(initCoffeeStack);
 
@@ -164,7 +166,6 @@ export const useCup = () => {
         .finally(() => setIsInitialized(true));
     }
   };
-
 
   return {
     add,

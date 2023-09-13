@@ -33,7 +33,7 @@ export const CupContextProvider = ({ children }: PropsWithChildren) => {
     capacity,
     clear,
     topingTypes,
-    setAmount
+    setAmount,
   } = useCup();
 
   return (
