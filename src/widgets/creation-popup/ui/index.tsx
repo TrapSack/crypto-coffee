@@ -3,7 +3,9 @@
 import classNames from 'classnames';
 import { useState, useContext } from 'react';
 import { CupContext } from '@entities/cup';
+import { routes } from '@src/entities/routes';
 import { Cross } from '@shared/assets';
+import { useExcludingRoutes } from '@shared/hooks';
 import { List, Button } from '@shared/ui';
 import styles from './styles.module.scss';
 
@@ -16,7 +18,10 @@ export const CreationPopup = () => {
   const { isInitialized, getCurrentAmount, coffeeStack, clear } =
     useContext(CupContext);
 
-  if (!isInitialized || !getCurrentAmount()) return null;
+  const show = useExcludingRoutes(routes.createCup);
+
+
+  if (!isInitialized || !getCurrentAmount() || !show) return null;
 
   const handleCloseModal = () => {
     setIsOpenModal(false);
@@ -54,7 +59,9 @@ export const CreationPopup = () => {
           ))}
         </List>
         <div className={styles.btnContainer}>
-          <Button buttonStyle="orange" onClick={clear}>Clear</Button>
+          <Button buttonStyle="orange" onClick={clear}>
+            Clear
+          </Button>
         </div>
       </div>
     </div>
